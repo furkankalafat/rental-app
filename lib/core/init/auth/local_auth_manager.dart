@@ -16,7 +16,7 @@ class LocalAuthManager {
               biometricOnly: true,
             ));
         if (didAuthenticate) {
-          Get.offAndToNamed("/home");
+          Get.offAndToNamed("/rental");
         }
       } else {
         //TODO device not supported biometrics.

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:rental_app/presentation/pages/auth_page/view/auth_view.dart';
-import 'package:rental_app/presentation/pages/home_page/view/home_view.dart';
+import 'package:rental_app/presentation/pages/rental_page/view/rental_view.dart';
 
 class RentalApp extends StatefulWidget {
   final Widget home;
@@ -25,7 +25,7 @@ class _RentalAppState extends State<RentalApp> {
         initialRoute: "/",
         getPages: [
           GetPage(name: "/", page: (() => const AuthView())),
-          GetPage(name: "/home", page: (() => const HomeView())),
+          GetPage(name: "/rental", page: (() => const RentalView())),
         ],
         home: child,
       ),
