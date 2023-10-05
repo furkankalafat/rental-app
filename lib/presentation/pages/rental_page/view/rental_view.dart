@@ -23,10 +23,9 @@ class RentalView extends StatelessWidget {
             body: SingleChildScrollView(
               child: SafeArea(
                   child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    SizedBox(height: 20.h),
                     ListView.separated(
                       separatorBuilder: (context, index) =>
                           SizedBox(height: 20.h),
@@ -42,7 +41,6 @@ class RentalView extends StatelessWidget {
                         location: viewModel.rentalCars[index].location,
                       ),
                     ),
-                    SizedBox(height: 20.h),
                   ],
                 ),
               )),
