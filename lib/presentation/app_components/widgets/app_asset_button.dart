@@ -25,7 +25,7 @@ class AppAssetButton extends StatelessWidget {
         name: name,
         height: height ?? 24,
         width: width ?? 24,
-        color: color ?? AppColor.instance.stockTrackerBlack,
+        color: color ?? AppColor.instance.rentalBlack,
       ),
     );
   }

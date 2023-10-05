@@ -34,7 +34,7 @@ class AppFormField extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8, bottom: 8),
           child: Text(
             fieldName ?? "",
-            style: AppText.instance.medium_12px,
+            style: AppText.instance.medium_12px.copyWith(fontSize: 16.sp),
           ),
         ),
         TextFormField(
@@ -47,7 +47,7 @@ class AppFormField extends StatelessWidget {
           validator: validator,
           onChanged: onChanged,
           textCapitalization: TextCapitalization.sentences,
-          cursorColor: AppColor.instance.stockTrackerGreen,
+          cursorColor: AppColor.instance.rentalGreen,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
@@ -69,14 +69,14 @@ class AppFormField extends StatelessWidget {
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(
-                color: AppColor.instance.stockTrackerRed,
+                color: AppColor.instance.rentalRed,
                 width: 2.w,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(
-                color: AppColor.instance.stockTrackerRed,
+                color: AppColor.instance.rentalRed,
                 width: 2.w,
               ),
             ),

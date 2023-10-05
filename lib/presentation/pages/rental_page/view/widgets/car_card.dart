@@ -2,29 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rental_app/presentation/pages/rental_page/view/widgets/price_widget.dart';
 import 'package:rental_app/presentation/pages/rental_page/view/widgets/select_button.dart';
-import 'package:rental_app/presentation/pages/rental_page/viewModel/rental_view_model.dart';
-
 import '../../../../app_components/widgets/app_image_widget.dart';
 import '../../../../app_ui/app_color/app_color.dart';
 import '../../../../app_ui/app_image/app_image.dart';
+import '../../../garage_page/view/widgets/delete_button.dart';
+import '../../model/car.dart';
 import 'car_info.dart';
 
 class CarCard extends StatelessWidget {
-  final String? brand;
-  final String? model;
-  final String? price;
-  final String? location;
-  final String? gear;
-  final bool isAvailable;
-  final RentalViewModel viewModel;
+  final Car car;
+  final int cardButtonCheck;
   const CarCard({
-    this.brand,
-    this.model,
-    this.price,
-    this.location,
-    this.gear,
-    this.isAvailable = false,
-    required this.viewModel,
+    required this.car,
+    required this.cardButtonCheck,
     super.key,
   });
 
@@ -46,9 +36,9 @@ class CarCard extends StatelessWidget {
                 topLeft: Radius.circular(12.r),
                 bottomLeft: Radius.circular(12.r),
               ),
-              color: isAvailable
-                  ? AppColor.instance.stockTrackerRed
-                  : AppColor.instance.stockTrackerGreen,
+              color: (car.isAvailable ?? false)
+                  ? AppColor.instance.rentalGreen
+                  : AppColor.instance.rentalRed,
             ),
             width: 10.w,
             height: 140.h,
@@ -64,7 +54,7 @@ class CarCard extends StatelessWidget {
                   height: 90.h,
                   width: 90.w,
                   decoration: BoxDecoration(
-                    color: AppColor.instance.stockTrackerWhite,
+                    color: AppColor.instance.rentalWhite,
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: AppImageWidget(
@@ -80,22 +70,24 @@ class CarCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         CarInfo(
-                          brand: brand,
-                          model: model,
-                          location: location,
-                          gear: gear,
+                          brand: car.brand,
+                          model: car.model,
+                          location: car.location,
+                          gear: car.gear,
                         ),
-                        //TODO will check
-                        SizedBox(
-                          width: 50.w,
-                        ),
+                        //TODO will check for spacing
                         PriceWidget(
-                          price: price,
+                          price: car.price,
                         ),
                       ],
                     ),
                     SizedBox(height: 10.h),
-                    SelectButton(viewModel: viewModel),
+                    if (cardButtonCheck == 0)
+                      SelectButton(car: car)
+                    else if (cardButtonCheck == 1)
+                      const DeleteButton()
+                    else if (cardButtonCheck == 2)
+                      const SizedBox(),
                   ],
                 ),
               ],

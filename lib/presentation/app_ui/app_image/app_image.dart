@@ -19,4 +19,7 @@ class AppImage {
   final String iconLocation = '${_icons}icon_location.png';
   final String iconRentalFill = '${_icons}icon_rental_fill.png';
   final String iconRentalOutline = '${_icons}icon_rental_outline.png';
+  final String iconArrowLeft = '${_icons}icon_arrow_left.png';
+  final String iconArrowDown = '${_icons}icon_arrow_down.png';
+  final String iconAdd = '${_icons}icon_add.png';
 }

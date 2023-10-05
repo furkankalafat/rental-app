@@ -13,19 +13,19 @@ class AppText {
   AppText._init();
 
   final TextStyle bold_24px = GoogleFonts.openSans(
-    color: AppColor.instance.stockTrackerGreen,
+    color: AppColor.instance.rentalGreen,
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
     letterSpacing: 0,
   );
   final TextStyle medium_12px = GoogleFonts.openSans(
-    color: AppColor.instance.stockTrackerBlack,
+    color: AppColor.instance.rentalBlack,
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
     letterSpacing: 0,
   );
   final TextStyle medium_20px = GoogleFonts.openSans(
-    color: AppColor.instance.stockTrackerBlack,
+    color: AppColor.instance.rentalBlack,
     fontSize: 20.sp,
     fontWeight: FontWeight.w500,
     letterSpacing: 0,
