@@ -19,7 +19,7 @@ class _RentalAppState extends State<RentalApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(430, 932),
+      designSize: const Size(393, 852),
       builder: (context, child) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: "/",

@@ -20,7 +20,7 @@ class AppText {
   );
   final TextStyle medium_12px = GoogleFonts.openSans(
     color: AppColor.instance.stockTrackerBlack,
-    fontSize: 16.sp,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w500,
     letterSpacing: 0,
   );
