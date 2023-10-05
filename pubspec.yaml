@@ -16,6 +16,7 @@ dependencies:
   equatable: ^2.0.5
   google_fonts: ^6.1.0
   json_annotation: ^4.8.1
+  tab_indicator_styler: ^2.0.0
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
