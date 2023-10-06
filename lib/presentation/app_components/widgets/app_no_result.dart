@@ -16,7 +16,6 @@ class AppNoResult extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 200.h),
           AppImageWidget(
               name: AppImage.instance.iconNoResult, height: 128, width: 128),
           SizedBox(height: 8.h),
