@@ -66,7 +66,6 @@ class CarCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         CarInfo(
@@ -75,7 +74,9 @@ class CarCard extends StatelessWidget {
                           location: car.location,
                           gear: car.gear,
                         ),
-                        //TODO will check for spacing
+                        SizedBox(
+                          width: 35.w,
+                        ),
                         PriceWidget(
                           price: car.price,
                         ),
@@ -85,7 +86,9 @@ class CarCard extends StatelessWidget {
                     if (cardButtonCheck == 0)
                       SelectButton(car: car)
                     else if (cardButtonCheck == 1)
-                      const DeleteButton()
+                      DeleteButton(
+                        id: car.id!,
+                      )
                     else if (cardButtonCheck == 2)
                       const SizedBox(),
                   ],

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 
-import '../model/car.dart';
+import '../../rental_page/model/car.dart';
 
-class RentalRepository {
+class GarageRepository {
   final Dio _dio = Dio();
-  Future<List<Car>> getRentalCars() async {
-    final response = await _dio
-        .get("https://651db8b444e393af2d5a41bb.mockapi.io/rental_cars");
+  Future<List<Car>> getGarageCars() async {
+    final response =
+        await _dio.get("https://651db8b444e393af2d5a41bb.mockapi.io/my_cars");
     if (response.statusCode == 200) {
       final result = List<Car>.from(response.data.map((e) {
         return Car.fromJson(e);
@@ -18,21 +18,20 @@ class RentalRepository {
     }
   }
 
-  Future<String?> addBookingCar(Car car) async {
+  Future<bool?> addGarageCar(Car car) async {
     final response = await _dio.post(
-      "https://651efb0244a3a8aa47694ab2.mockapi.io/booking_cars",
-      data: car.toJson(),
-    );
+        "https://651db8b444e393af2d5a41bb.mockapi.io/my_cars",
+        data: car.toJson());
     if (response.statusCode == 201) {
-      return car.id;
+      return true;
     } else {
       throw Exception("$response.statusCode");
     }
   }
 
-  Future<bool?> deleteRentalCar(String id) async {
+  Future<bool?> deleteGarageCar(String id) async {
     final response = await _dio
-        .delete("https://651db8b444e393af2d5a41bb.mockapi.io/rental_cars/$id");
+        .delete("https://651db8b444e393af2d5a41bb.mockapi.io/my_cars/$id");
     if (response.statusCode == 200) {
       return true;
     } else {

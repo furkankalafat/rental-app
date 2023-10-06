@@ -20,7 +20,5 @@ class AppTabBarViewModel extends GetxController implements BaseViewModel {
   BuildContext? context;
 
   @override
-  void setContext(BuildContext context) {
-    // TODO: implement setContext
-  }
+  void setContext(BuildContext context) {}
 }

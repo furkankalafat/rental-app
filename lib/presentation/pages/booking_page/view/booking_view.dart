@@ -7,6 +7,8 @@ import 'package:rental_app/presentation/app_ui/app_color/app_color.dart';
 import 'package:rental_app/presentation/pages/booking_page/service/booking_repository.dart';
 
 import '../../../../core/base/view/base_view.dart';
+import '../../../app_components/widgets/app_indicator.dart';
+import '../../../app_components/widgets/app_no_result.dart';
 import '../../rental_page/view/widgets/car_card.dart';
 import '../viewModel/booking_view_model.dart';
 
@@ -40,11 +42,15 @@ class BookingView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(height: 200.h),
-                              const Center(child: CircularProgressIndicator()),
+                              Center(
+                                  child: CircularProgressIndicator(
+                                color: AppColor.instance.rentalGreen,
+                              )),
                             ],
                           );
                         } else if (state is BookingFetched) {
-                          final bookingList = state.bookingResult;
+                          final bookingList =
+                              state.bookingResult.reversed.toList();
                           return Column(
                             children: [
                               ListView.separated(
@@ -60,8 +66,12 @@ class BookingView extends StatelessWidget {
                               ),
                             ],
                           );
-                        } else if (state is BookingFetchFailed) {}
-                        return const SizedBox();
+                        } else if (state is BookingFetchFailed) {
+                          return const AppNoResult(
+                            noResultCheck: 2,
+                          );
+                        }
+                        return const AppIndicator();
                       },
                     ),
                   ),

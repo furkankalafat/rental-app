@@ -23,10 +23,11 @@ class NotificationManager {
     final androidLocalNotificationsPlugin =
         flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>();
+    await androidLocalNotificationsPlugin?.requestNotificationsPermission();
     await androidLocalNotificationsPlugin
         ?.createNotificationChannel(_androidNotificationChannel);
     const initializationSettings = InitializationSettings(
-      android: AndroidInitializationSettings('ic_launcher'),
+      android: AndroidInitializationSettings('rental'),
       iOS: DarwinInitializationSettings(),
     );
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
@@ -42,7 +43,7 @@ class NotificationManager {
           _androidNotificationChannel.id,
           _androidNotificationChannel.name,
           channelDescription: _androidNotificationChannel.description,
-          icon: 'ic_launcher',
+          icon: 'rental',
           importance: Importance.max,
           priority: Priority.high,
         ),

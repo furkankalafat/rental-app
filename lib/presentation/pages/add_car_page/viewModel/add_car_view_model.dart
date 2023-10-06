@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:rental_app/business_logic/cubits/garage_cubit/garage_cubit.dart';
 import 'package:rental_app/business_logic/mixin/validation_mixin.dart';
-
+import 'package:rental_app/presentation/pages/rental_page/model/car.dart';
 import '../../../../core/base/model/base_view_model.dart';
 
 class AddCarViewModel extends GetxController
@@ -11,7 +13,6 @@ class AddCarViewModel extends GetxController
   final TextEditingController cardBrandController = TextEditingController();
   final TextEditingController carModelController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
-  final TextEditingController gearController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   late String currentGearValue;
 
@@ -21,7 +22,19 @@ class AddCarViewModel extends GetxController
   ];
 
   void addCar() {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      final currentCar = Car(
+        brand: cardBrandController.text,
+        model: carModelController.text,
+        gear: currentGearValue,
+        location: locationController.text,
+        price: priceController.text,
+        isAvailable: true,
+      );
+      Get.find<GarageCubit>().addGarageCar(currentCar);
+      Future.delayed(const Duration(milliseconds: 200))
+          .then((value) => Get.back());
+    }
   }
 
   void onChanged(String? value, bool? isUnitValue) {
@@ -47,6 +60,6 @@ class AddCarViewModel extends GetxController
 
   @override
   void setContext(BuildContext context) {
-    // TODO: implement setContext
+    this.context = context;
   }
 }

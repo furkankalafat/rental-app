@@ -10,6 +10,7 @@ class AppImage {
   AppImage._init();
 
   final String iconCar = '${_folder}icon_sedan.png';
+  final String iconNoResult = '${_folder}icon_no_result.png';
   final String iconBookingFill = '${_icons}icon_booking_fill.png';
   final String iconBookingOutline = '${_icons}icon_booking_outline.png';
   final String iconEuro = '${_icons}icon_euro.png';

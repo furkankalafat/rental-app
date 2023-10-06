@@ -20,8 +20,6 @@ class LocalAuthManager {
         }
       } else {
         //TODO device not supported biometrics.
-
-        print("not supported");
       }
     } catch (e) {}
   }

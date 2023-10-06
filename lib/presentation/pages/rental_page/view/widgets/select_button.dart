@@ -20,10 +20,10 @@ class SelectButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
-          //TODO Booking logics
           context.read<RentalCubit>().bookingRentalCar(car);
           await Future.delayed(const Duration(seconds: 3));
-          await NotificationManager().showNotification("title", "body");
+          await NotificationManager()
+              .showNotification("RentalApp", "Your car is ready!");
         },
         child: Container(
           width: 213.w,
