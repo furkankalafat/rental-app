@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rental_app/presentation/pages/booking_page/view/booking_view.dart';
 import 'package:rental_app/presentation/pages/rental_page/view/rental_view.dart';
 import 'package:rental_app/presentation/pages/tab_bar_page/view/widgets/app_tab_bar_widget.dart';
 import '../../../../core/base/view/base_stateful_view.dart';
+import '../../garage_page/view/garage_view.dart';
 import '../viewModel/tab_bar_view_model.dart';
 
 class AppTabBarView extends StatelessWidget {
@@ -34,7 +36,7 @@ class AppTabBarView extends StatelessWidget {
             body: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: viewModel.appTabProvider.controller,
-                children: const [RentalView(), SizedBox(), SizedBox()]),
+                children: const [RentalView(), GarageView(), BookingView()]),
           );
         });
   }

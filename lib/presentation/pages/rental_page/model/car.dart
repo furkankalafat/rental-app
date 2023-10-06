@@ -4,14 +4,16 @@ part 'car.g.dart';
 
 @JsonSerializable()
 class Car extends BaseModel {
-  final String? brand;
-  final String? model;
-  final String? price;
-  final String? location;
-  final String? gear;
-  final bool? isAvailable;
+  String? id;
+  String? brand;
+  String? model;
+  String? price;
+  String? location;
+  String? gear;
+  bool? isAvailable;
 
   Car({
+    this.id,
     this.brand,
     this.model,
     this.price,

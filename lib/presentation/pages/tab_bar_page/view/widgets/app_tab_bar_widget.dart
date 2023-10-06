@@ -28,8 +28,8 @@ class AppTabBarWidget extends StatelessWidget {
               horizontalPadding: 35,
               height: 2,
               strokeWidth: 4,
-              color: AppColor.instance.stockTrackerGreen),
-          labelColor: AppColor.instance.stockTrackerGreen,
+              color: AppColor.instance.rentalGreen),
+          labelColor: AppColor.instance.rentalGreen,
           unselectedLabelColor: AppColor.instance.darkGrey,
           labelStyle: AppText.instance.medium_12px
               .copyWith(fontSize: 10.sp, fontWeight: FontWeight.bold),
@@ -47,7 +47,7 @@ class AppTabBarWidget extends StatelessWidget {
                     height: 20,
                     width: 28,
                     color: viewModel.appTabProvider.controller.index == 0
-                        ? AppColor.instance.stockTrackerGreen
+                        ? AppColor.instance.rentalGreen
                         : AppColor.instance.darkGrey,
                   ),
                   const Padding(
@@ -67,7 +67,7 @@ class AppTabBarWidget extends StatelessWidget {
                     height: 20,
                     width: 28,
                     color: viewModel.appTabProvider.controller.index == 1
-                        ? AppColor.instance.stockTrackerGreen
+                        ? AppColor.instance.rentalGreen
                         : AppColor.instance.darkGrey,
                   ),
                   const Padding(
@@ -87,7 +87,7 @@ class AppTabBarWidget extends StatelessWidget {
                     height: 20,
                     width: 28,
                     color: viewModel.appTabProvider.controller.index == 2
-                        ? AppColor.instance.stockTrackerGreen
+                        ? AppColor.instance.rentalGreen
                         : AppColor.instance.darkGrey,
                   ),
                   const Padding(

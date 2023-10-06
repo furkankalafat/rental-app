@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rental_app/presentation/app_components/widgets/app_app_bar.dart';
+import 'package:rental_app/presentation/app_components/widgets/app_indicator.dart';
+import 'package:rental_app/presentation/app_components/widgets/app_no_result.dart';
 import 'package:rental_app/presentation/app_ui/app_color/app_color.dart';
+import 'package:rental_app/presentation/pages/rental_page/service/rental_repository.dart';
 import 'package:rental_app/presentation/pages/rental_page/view/widgets/car_card.dart';
-
+import '../../../../business_logic/cubits/rental_cubit/rental_cubit.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../viewModel/rental_view_model.dart';
 
@@ -18,30 +23,55 @@ class RentalView extends StatelessWidget {
           model.init();
         },
         onPageBuilder: (BuildContext context, RentalViewModel viewModel) {
-          return Scaffold(
-            backgroundColor: AppColor.instance.stockTrackerWhite,
-            body: SingleChildScrollView(
-              child: SafeArea(
+          return BlocProvider(
+            create: (context) =>
+                RentalCubit(RentalRepository())..getRentalCars(),
+            child: Scaffold(
+              appBar: const AppAppBar(backIsActive: false, text: "Rental"),
+              backgroundColor: AppColor.instance.rentalWhite,
+              body: SafeArea(
                   child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    ListView.separated(
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 20.h),
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: viewModel.rentalCars.length,
-                      itemBuilder: (context, index) => CarCard(
-                        viewModel: viewModel,
-                        brand: viewModel.rentalCars[index].brand,
-                        model: viewModel.rentalCars[index].model,
-                        price: viewModel.rentalCars[index].price,
-                        gear: viewModel.rentalCars[index].gear,
-                        location: viewModel.rentalCars[index].location,
-                      ),
-                    ),
-                  ],
+                child: BlocConsumer<RentalCubit, RentalState>(
+                  listener: (context, state) {
+                    if (state is BookingAdded) {
+                      context.read<RentalCubit>().deleteRentalCar(state.id);
+                    } else if (state is RentalDeleted) {
+                      context.read<RentalCubit>().getRentalCars();
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is RentalFetching) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                              child: CircularProgressIndicator(
+                            color: AppColor.instance.rentalGreen,
+                          )),
+                        ],
+                      );
+                    } else if (state is RentalFetched) {
+                      final rentalList = state.carResult;
+                      return ListView.separated(
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 20.h),
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemCount: rentalList.length,
+                        itemBuilder: (context, index) => CarCard(
+                          cardButtonCheck: 0,
+                          car: rentalList[index],
+                        ),
+                      );
+                    } else if (state is RentalFetchFailed) {
+                      return const AppNoResult(
+                        noResultCheck: 0,
+                      );
+                    }
+                    return const AppIndicator();
+                  },
                 ),
               )),
             ),

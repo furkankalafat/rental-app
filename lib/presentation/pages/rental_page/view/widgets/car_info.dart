@@ -31,10 +31,9 @@ class CarInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              //TODO
               "$brand $model",
               style: AppText.instance.medium_12px.copyWith(
-                  color: AppColor.instance.stockTrackerBlack, fontSize: 16.sp),
+                  color: AppColor.instance.rentalBlack, fontSize: 16.sp),
             ),
           ],
         ),
