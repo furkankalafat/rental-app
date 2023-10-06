@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../app_ui/app_color/app_color.dart';
 
 class AppIndicator extends StatelessWidget {
@@ -12,7 +10,6 @@ class AppIndicator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: 200.h),
         Center(
             child: CircularProgressIndicator(
           color: AppColor.instance.rentalGreen,

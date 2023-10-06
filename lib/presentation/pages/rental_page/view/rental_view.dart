@@ -46,7 +46,6 @@ class RentalView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 200.h),
                           Center(
                               child: CircularProgressIndicator(
                             color: AppColor.instance.rentalGreen,
@@ -59,6 +58,7 @@ class RentalView extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 20.h),
                         shrinkWrap: true,
+                        padding: EdgeInsets.zero,
                         itemCount: rentalList.length,
                         itemBuilder: (context, index) => CarCard(
                           cardButtonCheck: 0,

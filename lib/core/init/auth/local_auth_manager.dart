@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -18,9 +19,8 @@ class LocalAuthManager {
         if (didAuthenticate) {
           Get.offAndToNamed("/rental");
         }
-      } else {
-        //TODO device not supported biometrics.
-      }
-    } catch (e) {}
+      } else {}
+      // ignore:, unused_catch_clause, empty_catches
+    } on PlatformException catch (e) {}
   }
 }

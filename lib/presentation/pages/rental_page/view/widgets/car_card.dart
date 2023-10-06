@@ -36,64 +36,81 @@ class CarCard extends StatelessWidget {
                 topLeft: Radius.circular(12.r),
                 bottomLeft: Radius.circular(12.r),
               ),
-              color: (car.isAvailable ?? false)
-                  ? AppColor.instance.rentalGreen
-                  : AppColor.instance.rentalRed,
+              color: cardButtonCheck == 2
+                  ? AppColor.instance.rentalRed
+                  : AppColor.instance.rentalGreen,
             ),
             width: 10.w,
             height: 140.h,
           ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //car icon
-                Container(
-                  height: 90.h,
-                  width: 90.w,
-                  decoration: BoxDecoration(
-                    color: AppColor.instance.rentalWhite,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: AppImageWidget(
-                      name: AppImage.instance.iconCar, height: 24, width: 24),
-                ),
-                SizedBox(width: 8.w),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+          Expanded(
+            child: SizedBox(
+              height: 140.h,
+              child: Padding(
+                padding: EdgeInsets.only(top: 16.0.h, left: 16.0.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        CarInfo(
-                          brand: car.brand,
-                          model: car.model,
-                          location: car.location,
-                          gear: car.gear,
+                    //car icon
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        height: 90.h,
+                        width: 90.w,
+                        decoration: BoxDecoration(
+                          color: AppColor.instance.rentalWhite,
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
-                        SizedBox(
-                          width: 35.w,
-                        ),
-                        PriceWidget(
-                          price: car.price,
-                        ),
-                      ],
+                        child: AppImageWidget(
+                            name: AppImage.instance.iconCar,
+                            height: 24,
+                            width: 24),
+                      ),
                     ),
-                    SizedBox(height: 10.h),
-                    if (cardButtonCheck == 0)
-                      SelectButton(car: car)
-                    else if (cardButtonCheck == 1)
-                      DeleteButton(
-                        id: car.id!,
-                      )
-                    else if (cardButtonCheck == 2)
-                      const SizedBox(),
+                    //SizedBox(width: 8.w),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 8.0.w, right: 16.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CarInfo(
+                                  brand: car.brand,
+                                  model: car.model,
+                                  location: car.location,
+                                  gear: car.gear,
+                                ),
+                                PriceWidget(
+                                  price: car.price,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            if (cardButtonCheck == 0)
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 8.0.h),
+                                child: SelectButton(car: car),
+                              )
+                            else if (cardButtonCheck == 1)
+                              DeleteButton(
+                                id: car.id!,
+                              )
+                            else if (cardButtonCheck == 2)
+                              const SizedBox(),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ],

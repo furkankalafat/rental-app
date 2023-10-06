@@ -30,50 +30,43 @@ class BookingView extends StatelessWidget {
             child: Scaffold(
               appBar: const AppAppBar(backIsActive: false, text: "Booking"),
               backgroundColor: AppColor.instance.rentalWhite,
-              body: SingleChildScrollView(
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: BlocBuilder<BookingCubit, BookingState>(
-                      builder: (context, state) {
-                        if (state is BookingFetching) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(height: 200.h),
-                              Center(
-                                  child: CircularProgressIndicator(
-                                color: AppColor.instance.rentalGreen,
-                              )),
-                            ],
-                          );
-                        } else if (state is BookingFetched) {
-                          final bookingList =
-                              state.bookingResult.reversed.toList();
-                          return Column(
-                            children: [
-                              ListView.separated(
-                                separatorBuilder: (context, index) =>
-                                    SizedBox(height: 20.h),
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: bookingList.length,
-                                itemBuilder: (context, index) => CarCard(
-                                  cardButtonCheck: 2,
-                                  car: bookingList[index],
-                                ),
-                              ),
-                            ],
-                          );
-                        } else if (state is BookingFetchFailed) {
-                          return const AppNoResult(
-                            noResultCheck: 2,
-                          );
-                        }
-                        return const AppIndicator();
-                      },
-                    ),
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: BlocBuilder<BookingCubit, BookingState>(
+                    builder: (context, state) {
+                      if (state is BookingFetching) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                                child: CircularProgressIndicator(
+                              color: AppColor.instance.rentalGreen,
+                            )),
+                          ],
+                        );
+                      } else if (state is BookingFetched) {
+                        final bookingList =
+                            state.bookingResult.reversed.toList();
+                        return ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              SizedBox(height: 20.h),
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          itemCount: bookingList.length,
+                          itemBuilder: (context, index) => CarCard(
+                            cardButtonCheck: 2,
+                            car: bookingList[index],
+                          ),
+                        );
+                      } else if (state is BookingFetchFailed) {
+                        return const AppNoResult(
+                          noResultCheck: 2,
+                        );
+                      }
+                      return const AppIndicator();
+                    },
                   ),
                 ),
               ),

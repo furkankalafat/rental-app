@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:rental_app/business_logic/cubits/garage_cubit/garage_cubit.dart';
 import 'package:rental_app/business_logic/mixin/validation_mixin.dart';
 import 'package:rental_app/presentation/pages/rental_page/model/car.dart';
+import '../../../../business_logic/managers/notification_manager.dart';
 import '../../../../core/base/model/base_view_model.dart';
 
 class AddCarViewModel extends GetxController
@@ -21,7 +21,7 @@ class AddCarViewModel extends GetxController
     "Manual",
   ];
 
-  void addCar() {
+  void addCar() async {
     if (formKey.currentState!.validate()) {
       final currentCar = Car(
         brand: cardBrandController.text,
@@ -34,6 +34,10 @@ class AddCarViewModel extends GetxController
       Get.find<GarageCubit>().addGarageCar(currentCar);
       Future.delayed(const Duration(milliseconds: 200))
           .then((value) => Get.back());
+
+      await Future.delayed(const Duration(seconds: 3));
+      await NotificationManager()
+          .showNotification("RentalApp", "Car added to your garage.");
     }
   }
 

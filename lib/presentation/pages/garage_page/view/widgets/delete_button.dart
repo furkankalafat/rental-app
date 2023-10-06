@@ -17,7 +17,7 @@ class DeleteButton extends StatelessWidget {
           context.read<GarageCubit>().deleteGarageCar(id);
           await Future.delayed(const Duration(seconds: 3));
           await NotificationManager().showNotification(
-              "RentalApp", "The vehicle has been removed from your garage.");
+              "RentalApp", "Car has been removed from your garage.");
         },
         child: Container(
           width: 213.w,
