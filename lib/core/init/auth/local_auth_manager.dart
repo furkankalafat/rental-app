@@ -18,6 +18,8 @@ class LocalAuthManager {
             ));
         if (didAuthenticate) {
           Get.offAndToNamed("/rental");
+        } else {
+          Get.offAndToNamed("/rental");
         }
       } else {}
       // ignore:, unused_catch_clause, empty_catches
